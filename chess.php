@@ -1,21 +1,20 @@
 <?php
 
-session_start();
+include 'class/Storage.php';
+include 'class/SessionStorage.php';
+include 'class/Board.php';
+
+$storage = new SessionStorage('map');
+$board = new Board($storage);
 
 if(isset($_GET['newFigures'])){
-    $_SESSION['map'] = 'rnbqkbnrpppppppp11111111111111111111111111111111PPPPPPPPRNBQKBNR';
-    echo $_SESSION['map'];
+    echo $board->newFigures();
 }
 
 if (isset($_GET['getFigures'])){
-    echo    $_SESSION['map'];
+    echo $board->getFigures();
 }
 
 if (isset($_GET['moveFigure'])){
-    $frCoord = $_GET['coordFrom'];
-    $toCoord = $_GET['coordTo'];
-    $figure = $_SESSION['map'][$frCoord];
-    $_SESSION['map'][$frCoord] = '1';
-    $_SESSION['map'][$toCoord] = $figure;
-    echo $_SESSION['map'];
+    echo $board->moveFigures($_GET['coordFrom'], $_GET['coordTo']);
 }
