@@ -1,10 +1,10 @@
 <?php
 
 include 'class/Storage.php';
-include 'class/SessionStorage.php';
+include 'class/FileStorage.php';
 include 'class/Board.php';
 
-$storage = new SessionStorage('map');
+$storage = new FileStorage('save.txt');
 $board = new Board($storage);
 
 if(isset($_GET['newFigures'])){
