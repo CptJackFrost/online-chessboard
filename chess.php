@@ -1,10 +1,10 @@
 <?php
 
 include 'class/Storage.php';
-include 'class/FileStorage.php';
+include 'class/SQLStorage.php';
 include 'class/Board.php';
 
-$storage = new FileStorage('save.txt');
+$storage = new SQLStorage('mysql:host=127.0.0.1;dbname=chessboard;charset=utf8', 'root', '');
 $board = new Board($storage);
 
 if(isset($_GET['newFigures'])){
